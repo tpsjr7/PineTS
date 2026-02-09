@@ -778,6 +778,31 @@ var array<T> xs = array.new<T>()
         });
     });
 
+    describe('If / Else with Comments', () => {
+        it('should allow comments between if block and else', () => {
+            const code = `
+//@version=6
+indicator("else if comment")
+
+x = 1
+var float y = na
+
+if x == 1
+    y := 10
+// comment between if and else
+else if x == 2
+    y := 20
+else
+    y := 30
+
+plot(y)
+`;
+            const result = transpile(code);
+            const jsCode = result.toString();
+            expect(jsCode).toBeDefined();
+        });
+    });
+
     describe('Generic Type Syntax', () => {
         it('should parse and transpile simple generic types (array<float>)', () => {
             const code = `
