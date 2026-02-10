@@ -1,5 +1,15 @@
 # Change Log
 
+## [0.8.8] - 2026-02-09 - Community Contributions & Fixes
+
+### Fixed
+
+-   **Color Conversion**: Fixed color conversion for `color.new()` to correctly generate `rgba()` strings (contribution by @dcaoyuan).
+-   **Parser Comments**:
+    -   Fixed parser to allow comments between `if` block and `else` (contribution by @C9Bad).
+    -   Fixed parser to allow inline comments after type fields (contribution by @C9Bad).
+-   **TA Bollinger Bands**: Fixed `ta.bb` return order to be `[middle, upper, lower]` to match Pine Script behavior (contribution by @dcaoyuan).
+
 ## [0.8.7] - 2026-02-08 - Pine Script Transpiler Enhancements & Fixes
 
 ### Added
@@ -20,7 +30,7 @@
     -   Fixed generated IIFE (Immediately Invoked Function Expression) for switch statements.
     -   Fixed multi-line switch body handling.
     -   Improved switch syntax conversion in Pine Script to PineTS transpiler.
--   **Unary Operators**: Fixed transpiler to properly transform function calls within unary expressions (e.g., `!func()`).
+-   **Unary Operators**: Fixed transpiler to properly transform function calls within unary expressions (e.g., `!func()`). (contribution by @dcaoyuan)
 -   **Matrix Operations**: Fixed matrix operations transpilation issues.
 -   **Linter Fixes**: Resolved TypeScript linter errors in transformer code.
 

@@ -388,9 +388,17 @@ Please feel free to open issues or submit pull requests.
 
 ## Contributors
 
-<a href="https://github.com/QuantForgeOrg/PineTS/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=QuantForgeOrg/PineTS" />
-</a>
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the full guidelines.
+
+Thanks to all PineTS contributors:
+
+<p align="left">
+  <a href="https://github.com/alaa-eddine"><img src="https://avatars.githubusercontent.com/u/1016513?v=4&s=64" width="64" height="64" alt="alaa-eddine" title="alaa-eddine" style="border-radius: 50%;"/></a> 
+  <a href="https://github.com/dcaoyuan"><img src="https://avatars.githubusercontent.com/u/271571?v=4&s=64" width="64" height="64" alt="dcaoyuan" title="dcaoyuan" style="border-radius: 50%;"/></a> 
+<a href="https://github.com/C9Bad"><img src="https://avatars.githubusercontent.com/u/57975070?v=4&s=64" width="64" height="64" alt="C9Bad" title="C9Bad" style="border-radius: 50%;"/></a> 
+<a href="https://github.com/aakash-code"><img src="https://avatars.githubusercontent.com/u/71116743?v=4&s=64" width="64" height="64" alt="aakash-code" title="aakash-code" style="border-radius: 50%;"/></a>
+
+</p>
 
 ---
 

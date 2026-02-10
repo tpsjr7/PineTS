@@ -1,6 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 
-import { type PlotCharOptions, type IndicatorOptions } from '../types/PineTypes';
 import { Series } from '../Series';
 import { PineTypeObject } from './PineTypeObject';
 import { parseArgsForPineParams } from './utils';
@@ -78,13 +77,24 @@ export class Core {
             if (color && color.startsWith('#')) {
                 // Remove # and convert to RGB
                 const hex = color.slice(1);
-                return a ? `#${hex}${Math.round(255 / 100 * (100 - a)).toString(16).padStart(2, '0').toUpperCase()}` : `#${hex}`
-
+                return a
+                    ? `#${hex}${Math.round((255 / 100) * (100 - a))
+                          .toString(16)
+                          .padStart(2, '0')
+                          .toUpperCase()}`
+                    : `#${hex}`;
             } else {
-                const hex = COLOR_CONSTANTS[color]
+                const hex = COLOR_CONSTANTS[color];
                 return hex
-                    ? a ? `#${hex}${Math.round(255 / 100 * (100 - a)).toString(16).padStart(2, '0').toUpperCase()}` : `#${hex}`
-                    : a ? `rgba(${color}, ${(100 - a) / 100})` : color; // Handle existing RGB format
+                    ? a
+                        ? `#${hex}${Math.round((255 / 100) * (100 - a))
+                              .toString(16)
+                              .padStart(2, '0')
+                              .toUpperCase()}`
+                        : `#${hex}`
+                    : a
+                    ? `rgba(${color}, ${(100 - a) / 100})`
+                    : color; // Handle existing RGB format
             }
         },
         white: COLOR_CONSTANTS['white'],
@@ -111,7 +121,7 @@ export class Core {
         silver: COLOR_CONSTANTS['silver'],
         bronze: COLOR_CONSTANTS['bronze'],
     };
-    constructor(private context: any) { }
+    constructor(private context: any) {}
     private extractPlotOptions(options: PlotCharOptions) {
         const _options: any = {};
         for (let key in options) {
