@@ -481,7 +481,11 @@ function transformOperand(node: any, scopeManager: ScopeManager, namespace: stri
         case 'MemberExpression': {
             // Handle array access
             const transformedObject = node.object.type === 'Identifier' ? transformIdentifierForParam(node.object, scopeManager) : node.object;
-            // Don't add [0] if this is already an array access
+            // For array/history access (e.g., x[1]), read via $.get(series, index)
+            // so context-bound series variables resolve to historical values correctly.
+            if (node.computed) {
+                return ASTFactory.createGetCall(transformedObject, node.property);
+            }
             return {
                 type: 'MemberExpression',
                 object: transformedObject,
@@ -637,6 +641,8 @@ function getParamFromConditionalExpression(node: any, scopeManager: ScopeManager
                 if (node.object) {
                     c(node.object, { parent: node, inNamespaceCall: state.inNamespaceCall });
                 }
+                // Convert computed history access (x[1]) to $.get(x, 1)
+                transformMemberExpression(node, '', scopeManager);
             },
             ConditionalExpression(node: any, state: any, c: any) {
                 // Traverse test, consequent, and alternate with correct parent
