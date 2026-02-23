@@ -144,6 +144,13 @@ export enum barmerge {
     lookahead_off = 'lookahead_off',
 }
 
+export enum extend {
+    none = 'none',
+    left = 'left',
+    right = 'right',
+    both = 'both',
+}
+
 export enum xloc {
     bar_index = 'bar_index',
     bar_time = 'bar_time',
@@ -178,6 +185,7 @@ const types = {
     size,
     format,
     barmerge,
+    extend,
     xloc,
     yloc,
     text,

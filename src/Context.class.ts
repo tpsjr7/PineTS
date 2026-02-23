@@ -19,6 +19,7 @@ import { Timeframe } from './namespaces/Timeframe';
 import { FillHelper, HlineHelper, PlotHelper } from './namespaces/Plots';
 import { ChartHelper } from './namespaces/chart/ChartHelper';
 import { LabelHelper } from './namespaces/label/LabelHelper';
+import { LineHelper } from './namespaces/line/LineHelper';
 
 export class Context {
     public data: any = {
@@ -77,6 +78,7 @@ export class Context {
 
     public result: any = undefined;
     public plots: any = {};
+    public lines: any[] = [];
 
     public marketData: any;
     public source: IProvider | any[];
@@ -204,6 +206,23 @@ export class Context {
 
         this.bindContextObject(hlineHelper, ['any', 'style_dashed', 'style_solid', 'style_dotted', 'param'], 'hline');
         this.bindContextObject(fillHelper, ['any', 'param'], 'fill');
+
+        const lineHelper = new LineHelper(this);
+        this.bindContextObject(
+            lineHelper,
+            [
+                'new',
+                'delete',
+                'param',
+                'style_solid',
+                'style_dotted',
+                'style_dashed',
+            ],
+            'line'
+        );
+        Object.defineProperty(this.pine['line'], 'all', {
+            get: () => lineHelper.all,
+        });
 
         // chart namespace (with nested chart.point sub-namespace)
         const chartHelper = new ChartHelper(this);

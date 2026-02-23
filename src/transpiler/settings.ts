@@ -71,6 +71,7 @@ export const CONTEXT_PINE_VARS = [
     'size',
     'format',
     'dayofweek',
+    'extend',
 
     // Coordinate and alignment constants
     'xloc',
