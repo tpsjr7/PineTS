@@ -490,6 +490,23 @@ plot(size)
         expect(jsCode).toContain('.push(');
         expect(jsCode).toContain('.size()');
     });
+
+    it('should transpile historical self-reference inside conditional expressions', () => {
+        const code = `
+//@version=6
+indicator("History Conditional Test", overlay=true)
+var upos = 0
+upos := close > open ? 1 : upos
+plotshape(upos > upos[1] ? low : na, "Signal", shape.labelup, location.absolute, color.green, text="B")
+        `;
+
+        const result = transpile(code, { debug: true, ln: true });
+        const jsCode = result.toString();
+
+        // Regression: upos[1] must become $.get($.var.glb1_upos, 1), not raw $.var.glb1_upos[1].
+        expect(jsCode).toMatch(/\$\.get\(\$\.var\.glb1_upos,\s*1\)/);
+        expect(jsCode).not.toContain('$.var.glb1_upos[1]');
+    });
 });
 
 describe('Pine Script Transpilation - Built-in Functions', () => {
